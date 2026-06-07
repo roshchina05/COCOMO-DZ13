@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COCOMO II — ТЭО контейнера безопасности</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #222; }
+header { background: #1a3a5c; color: #fff; padding: 28px 40px; }
+header h1 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+header p { font-size: 13px; opacity: 0.75; }
+.container { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 28px; }
+.card { background: #fff; border-radius: 10px; padding: 18px 20px; border-left: 4px solid #1a3a5c; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.card .label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+.card .value { font-size: 26px; font-weight: 700; color: #1a3a5c; }
+.card .sub { font-size: 11px; color: #999; margin-top: 3px; }
+section { background: #fff; border-radius: 10px; padding: 22px 24px; margin-bottom: 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+section h2 { font-size: 15px; font-weight: 600; color: #1a3a5c; margin-bottom: 6px; padding-bottom: 10px; border-bottom: 2px solid #e8edf3; }
+.chart-subtitle { font-size: 12px; color: #888; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #1a3a5c; color: #fff; padding: 9px 12px; text-align: left; font-weight: 500; }
+td { padding: 8px 12px; border-bottom: 1px solid #eef0f3; }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #f8f9fb; }
+.hl td { background: #e8f0fe !important; font-weight: 600; color: #1a3a5c; }
+.chart-wrap { position: relative; margin-top: 14px; }
+.h280 { height: 280px; }
+.h380 { height: 380px; }
+footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>COCOMO II — Технико-экономическое обоснование</h1>
+  <p>Контейнер безопасности AES-256-GCM &nbsp;|&nbsp; Вариант №56 &nbsp;|&nbsp; Рощина А.В., группа КП-23-17 &nbsp;|&nbsp; 2026 г.</p>
+  <p style="margin-top:5px;opacity:.55;">Сгенерировано: 07.06.2026 16:42</p>
+</header>
+
+<div class="container">
+
+<div class="cards">
+  <div class="card">
+    <div class="label">NOP объектных точек</div>
+    <div class="value">174</div>
+    <div class="sub">скорр. 113.1 (−35%)</div>
+  </div>
+  <div class="card">
+    <div class="label">PM постархитектурный</div>
+    <div class="value">9.96</div>
+    <div class="sub">чел.-мес. (уровень 2, базовый)</div>
+  </div>
+  <div class="card">
+    <div class="label">Длительность TDEV</div>
+    <div class="value">6.74</div>
+    <div class="sub">месяца</div>
+  </div>
+  <div class="card">
+    <div class="label">Стоимость персонала</div>
+    <div class="value">6.97</div>
+    <div class="sub">млн руб.</div>
+  </div>
+  <div class="card">
+    <div class="label">Совокупные затраты</div>
+    <div class="value">9.25</div>
+    <div class="sub">млн руб. (3 параметра Боэма)</div>
+  </div>
+</div>
+
+<!-- Три уровня COCOMO -->
+<section>
+  <h2>Сравнение трёх уровней оценки COCOMO II</h2>
+  <table>
+    <thead><tr><th>Уровень оценки</th><th>Размер</th><th>PM, чел.-мес.</th></tr></thead>
+    <tbody>
+      <tr><td>Уровень 1 — Предварительное прототипирование</td><td>NOP = 113.1 точек</td><td>8.7</td></tr>
+      <tr><td>Уровень 2 — Предварительное проектирование</td><td>KDSI = 2.262</td><td>9.96</td></tr>
+      <tr class="hl"><td>Уровень 3 — Постархитектурный (итоговый)</td><td>KDSI = 2.432</td><td>10.8</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Коэффициенты M -->
+<section>
+  <h2>Поправочные коэффициенты множителя M</h2>
+  <table>
+    <thead><tr><th>Коэффициент</th><th>Значение</th></tr></thead>
+    <tbody><tr><td>PERS</td><td>1.0</td></tr>
+<tr><td>RCPX</td><td>1.33</td></tr>
+<tr><td>RUSE</td><td>1.15</td></tr>
+<tr><td>PDIF</td><td>1.0</td></tr>
+<tr><td>PREX</td><td>1.0</td></tr>
+<tr><td>FCIL</td><td>0.87</td></tr>
+<tr><td>SCED</td><td>1.0</td></tr>
+<tr class='hl'><td><b>M (итого)</b></td><td><b>1.331</b></td></tr></tbody>
+  </table>
+</section>
+
+<!-- Стоимость персонала -->
+<section>
+  <h2>Расчёт стоимости персонала (SC)</h2>
+  <table>
+    <thead><tr><th>Показатель</th><th>Значение</th></tr></thead>
+    <tbody>
+      <tr><td>Средняя зарплата специалиста</td><td>300,000 руб./мес.</td></tr>
+      <tr><td>С учётом налогов и взносов (×1.3)</td><td>390,000 руб./мес.</td></tr>
+      <tr><td>CPM с накладными расходами (×1.5)</td><td>585,000 руб./чел.-мес.</td></tr>
+      <tr><td>RELY × TIME × STOR × TOOL × EXP</td><td>1.195</td></tr>
+      <tr><td>PM_эфф = 9.96 × 1.195</td><td>11.906 чел.-мес.</td></tr>
+      <tr class="hl"><td><b>SC = 11.906 × 585,000</b></td><td><b>6,965,118 руб. ≈ 6.97 млн руб.</b></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Аппаратные средства -->
+<section>
+  <h2>Стоимость аппаратных средств и программного обеспечения</h2>
+  <table>
+    <thead><tr><th>Статья затрат</th><th>Сумма, руб.</th></tr></thead>
+    <tbody>
+      <tr><td>Рабочие станции (5 мест × 130 000 ₽)</td><td>650 000</td></tr>
+      <tr><td>Лицензионное ПО (ОС, среды разработки)</td><td>100 000</td></tr>
+      <tr><td>Открытый стек (Python, Django, Docker, Kubernetes, Prometheus, Grafana)</td><td>0</td></tr>
+      <tr><td>Единовременные затраты на платформу разработки</td><td>750 000</td></tr>
+      <tr><td>Облачная инфраструктура Timeweb Cloud (в год)</td><td>1 184 220</td></tr>
+      <tr><td>Обслуживание рабочих станций и ПО (15% в год)</td><td>112 500</td></tr>
+      <tr class="hl"><td><b>Итого за первый год</b></td><td><b>2,046,720</b></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Командировки и обучение -->
+<section>
+  <h2>Расходы на командировки и обучение</h2>
+  <table>
+    <thead><tr><th>Статья</th><th>Сумма, руб.</th></tr></thead>
+    <tbody>
+      <tr><td>Обучение специалиста по ИБ (курс по разработке и сертификации СКЗИ)</td><td>100 000</td></tr>
+      <tr><td>Обучение инженера DevOps (Kubernetes, управление секретами)</td><td>60 000</td></tr>
+      <tr><td>Командировки на пилотные внедрения (2 выезда × 38 200 ₽)</td><td>76 400</td></tr>
+      <tr class="hl"><td><b>Итого</b></td><td><b>236,400</b></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Три параметра Боэма — сводная -->
+<section>
+  <h2>Сводная таблица затрат по трём параметрам Боэма</h2>
+  <table>
+    <thead><tr><th>Параметр</th><th>Сумма, руб.</th></tr></thead>
+    <tbody>
+      <tr><td>1. Аппаратные средства и ПО (включая обслуживание)</td><td>2,046,720</td></tr>
+      <tr><td>2. Командировки и обучение</td><td>236,400</td></tr>
+      <tr><td>3. Расходы на персонал</td><td>6,965,118</td></tr>
+      <tr class="hl"><td><b>Итого совокупные затраты</b></td><td><b>9,248,238</b></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- Рисунок 1 — Рэлей -->
+<section>
+  <h2>Рисунок 1 — Распределение трудоёмкости проекта по модели Рэлея</h2>
+  <p class="chart-subtitle">По оси X — месяцы (1–7), по оси Y — трудоёмкость в чел.-ч. σ = 4, K = 1593.6 чел.-ч.</p>
+  <div class="chart-wrap h280">
+    <canvas id="rayleighChart" role="img" aria-label="Кривая Рэлея">Кривая Рэлея.</canvas>
+  </div>
+  <table style="margin-top:16px;">
+    <thead><tr><th>Месяц</th><th>f(t)</th><th>Трудоёмкость, чел.-ч.</th><th>Нарастающий итог, чел.-ч.</th></tr></thead>
+    <tbody><tr><td>1</td><td>0.0606</td><td>117.2</td><td>117.2</td></tr>
+<tr><td>2</td><td>0.1103</td><td>213.5</td><td>330.7</td></tr>
+<tr><td>3</td><td>0.1415</td><td>273.9</td><td>604.6</td></tr>
+<tr><td>4</td><td>0.1516</td><td>293.4</td><td>898.0</td></tr>
+<tr><td>5</td><td>0.1431</td><td>276.9</td><td>1174.9</td></tr>
+<tr><td>6</td><td>0.1217</td><td>235.6</td><td>1410.5</td></tr>
+<tr><td>7</td><td>0.0946</td><td>183.1</td><td>1593.6</td></tr></tbody>
+  </table>
+</section>
+
+<!-- Рисунок 2 — Фазы -->
+<section>
+  <h2>Рисунок 2 — Распределение трудоёмкости по фазам жизненного цикла</h2>
+  <p class="chart-subtitle">По оси X — фазы проекта, по оси Y — трудоёмкость в чел.-мес.</p>
+  <div class="chart-wrap h380">
+    <canvas id="phasesChart" role="img" aria-label="Трудоёмкость по фазам">Фазы.</canvas>
+  </div>
+  <table style="margin-top:16px;">
+    <thead><tr><th>Фаза</th><th>Доля</th><th>Трудоёмкость, чел.-мес.</th></tr></thead>
+    <tbody><tr><td>Планирование и анализ требований</td><td>10%</td><td>1.00</td></tr>
+<tr><td>Проектирование архитектуры</td><td>20%</td><td>1.99</td></tr>
+<tr><td>Детальное проектирование</td><td>25%</td><td>2.49</td></tr>
+<tr><td>Кодирование и модульное тестирование</td><td>30%</td><td>2.99</td></tr>
+<tr><td>Интеграционное и системное тестирование</td><td>10%</td><td>1.00</td></tr>
+<tr><td>Внедрение и сопровождение</td><td>5%</td><td>0.50</td></tr>
+<tr class='hl'><td><b>Итого</b></td><td><b>100%</b></td><td><b>9.96</b></td></tr></tbody>
+  </table>
+</section>
+
+<!-- Рисунок 3 — Путман помесячно -->
+<section>
+  <h2>Рисунок 3 — Помесячное распределение трудоёмкости по модели Путмана</h2>
+  <p class="chart-subtitle">По оси X — месяцы (1–7), по оси Y — трудоёмкость в чел.-мес.</p>
+  <div class="chart-wrap h280">
+    <canvas id="putnamChart" role="img" aria-label="Помесячное распределение Путмана">Путман.</canvas>
+  </div>
+  <table style="margin-top:16px;">
+    <thead><tr><th>Месяц</th><th>Доля усилий</th><th>Трудоёмкость, чел.-мес.</th><th>Нарастающий итог, чел.-мес.</th></tr></thead>
+    <tbody><tr><td>1</td><td>8.8%</td><td>0.88</td><td>0.88</td></tr>
+<tr><td>2</td><td>15.5%</td><td>1.54</td><td>2.42</td></tr>
+<tr><td>3</td><td>19.0%</td><td>1.89</td><td>4.31</td></tr>
+<tr><td>4</td><td>19.0%</td><td>1.89</td><td>6.20</td></tr>
+<tr><td>5</td><td>16.5%</td><td>1.64</td><td>7.84</td></tr>
+<tr><td>6</td><td>12.6%</td><td>1.25</td><td>9.09</td></tr>
+<tr><td>7</td><td>8.7%</td><td>0.87</td><td>9.96</td></tr>
+<tr class='hl'><td><b>Итого</b></td><td><b>100%</b></td><td><b>9.96</b></td><td><b>9.96</b></td></tr></tbody>
+  </table>
+</section>
+
+<!-- Путман сводка -->
+<section>
+  <h2>Модель Путмана — сводные результаты</h2>
+  <table>
+    <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+    <tbody>
+      <tr><td>Размер (ESLOC)</td><td>2,432</td></tr>
+      <tr><td>Длительность (годы)</td><td>0.562</td></tr>
+      <tr><td>Производительность</td><td>3,249 ESLOC/(чел.-год)</td></tr>
+      <tr><td>Effort (чел.-лет)</td><td>1.18</td></tr>
+      <tr class="hl"><td><b>PM Путман</b></td><td><b>14.16 чел.-мес.</b></td></tr>
+      <tr><td>PM COCOMO II (уровень 2)</td><td>9.96 чел.-мес.</td></tr>
+      <tr><td>Расхождение</td><td>4.20 чел.-мес.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+</div>
+
+<footer>Рощина А.В., группа КП-23-17 &nbsp;|&nbsp; Вариант №56 &nbsp;|&nbsp; 07.06.2026 16:42</footer>
+
+<script>
+new Chart(document.getElementById('rayleighChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: ["1", "2", "3", "4", "5", "6", "7"],
+    datasets: [{
+      data: [117.2, 213.5, 273.9, 293.4, 276.9, 235.6, 183.1],
+      borderColor: '#1a3a5c',
+      backgroundColor: 'rgba(26,58,92,0.10)',
+      borderWidth: 2.5,
+      pointRadius: 5,
+      pointBackgroundColor: '#1a3a5c',
+      tension: 0.4,
+      fill: true
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Месяц проекта' } },
+      y: { title: { display: true, text: 'чел.-ч.' }, beginAtZero: true }
+    }
+  }
+});
+
+new Chart(document.getElementById('phasesChart').getContext('2d'), {
+  type: 'bar',
+  data: {
+    labels: ["Планирование и анализ требований", "Проектирование архитектуры", "Детальное проектирование", "Кодирование и модульное тестирование", "Интеграционное и системное тестирование", "Внедрение и сопровождение"],
+    datasets: [{
+      data: [1.0, 1.99, 2.49, 2.99, 1.0, 0.5],
+      backgroundColor: 'rgba(26,58,92,0.78)',
+      borderColor: '#1a3a5c',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: {
+        title: { display: true, text: 'Фазы проекта' },
+        ticks: { maxRotation: 45, minRotation: 45, font: { size: 9 } }
+      },
+      y: { title: { display: true, text: 'чел.-мес.' }, beginAtZero: true }
+    }
+  }
+});
+
+new Chart(document.getElementById('putnamChart').getContext('2d'), {
+  type: 'line',
+  data: {
+    labels: ["1", "2", "3", "4", "5", "6", "7"],
+    datasets: [{
+      data: [0.88, 1.54, 1.89, 1.89, 1.64, 1.25, 0.87],
+      borderColor: '#1a3a5c',
+      backgroundColor: 'rgba(26,58,92,0.10)',
+      borderWidth: 2.5,
+      pointRadius: 5,
+      pointBackgroundColor: '#1a3a5c',
+      tension: 0.4,
+      fill: true
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { title: { display: true, text: 'Месяц проекта' } },
+      y: { title: { display: true, text: 'чел.-мес.' }, beginAtZero: true }
+    }
+  }
+});
+</script>
+</body>
+</html>
